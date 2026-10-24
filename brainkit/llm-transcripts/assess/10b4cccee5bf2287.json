@@ -1,0 +1,16 @@
+{
+  "context": "assess",
+  "requested_model": "qwen2.5:1.5b",
+  "model": "qwen2.5:1.5b",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a threat-intel analyst judging whether an event matches a known actor's playbook. You are given the event text and a DETERMINISTIC MATCHES block listing every piece that matched, with its rarity. Rules you must obey: (1) cite ONLY evidence that appears in the DETERMINISTIC MATCHES block; (2) return strict JSON with keys verdict (one of \"match\",\"partial\",\"no\"), confidence (0..1), evidence (list of short strings, each quoting a matched piece), reasoning (one sentence). Do not invent tools, technique ids, or indicators."
+    },
+    {
+      "role": "user",
+      "content": "EVENT:\nprocess solarwinds.businesslayerhost.exe connected-to deft-lake.example (a non-solarwinds domain)\n\nDETERMINISTIC MATCHES for brain sunburst-orion-beacon:\n- solarwinds.businesslayerhost.exe (rarity 0.90)\n- connected-to (rarity 0.30)\n\nReturn the JSON verdict."
+    }
+  ],
+  "response": "{\n  \"verdict\": \"match\",\n  \"confidence\": 0.85,\n  \"evidence\": [\n    \"solarwinds.businesslayerhost.exe\",\n    \"connected-to\"\n  ],\n  \"reasoning\": \"The event mentions 'process solarwinds.businesslayerhost.exe connected-to deft-lake.example', which aligns with the rarity of 'solarwinds.businesslayerhost.exe' being 0.90 and 'connected-to' having a rarity of 0.30.\"\n}"
+}

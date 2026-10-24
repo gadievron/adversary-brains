@@ -1,0 +1,53 @@
+# The worked example from appendix 1 of the brief, as published (no LOCAL fields).
+# Divergence from the printed text (D7, docs/DIVERGENCES.md): the `related:`
+# entry is omitted because its UUID resolves to no brain in this repository and
+# appendix 1's CI contract requires related-id resolution (workflow added in
+# Stage 1); the mechanism will be exercised in tests/fixtures instead.
+schema: brain/0.1
+id: 6f1c2a9e-3d47-4b8a-9c11-2e5f8b7a4d01
+title: Lure chain with registrant reuse
+status: test
+scale: campaign
+representation: graph
+match: likelihood
+threshold: 0.7
+tlp: green
+created: "2026-07-01"
+modified: "2026-07-08"
+references:
+  - https://example.org/report-2026-06
+entities:
+  - {id: e1, type: domain-name, value: lure.example}
+  - {id: e2, type: domain-name, value: stage.example}
+  - id: e3
+    type: process
+    pattern: {name: powershell.exe, command_line|contains: "-enc"}
+  - {id: e4, type: ipv4-addr, value: 203.0.113.7}
+links:
+  - id: L1
+    type: state
+    source: e1
+    target: e2
+    relation: shared-registrant
+    role: required
+    volatility: rotating
+    prior: 0.8
+    provenance: {kind: reported, source: report-2026-06}
+  - id: L2
+    type: activity
+    source: e3
+    target: e4
+    relation: connected-to
+    role: required
+    volatility: ephemeral
+    prior: 0.6
+    provenance: {kind: observed, source: edr}
+  - id: L3
+    type: activity
+    source: e2
+    target: e3
+    relation: delivered
+    role: supporting
+    volatility: rotating
+    prior: 0.5
+    provenance: {kind: reported, source: report-2026-06}

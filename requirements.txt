@@ -1,0 +1,6 @@
+# Exact pins for reproducibility (ARTIFACT-evaluation expectation; ADR 010's
+# replay design keeps the LLM out of this list entirely).
+# Requires Python >=3.10; developed and verified on 3.14 (also valid on 3.11).
+PyYAML==6.0.3
+jsonschema==4.25.1
+pytest==9.0.1

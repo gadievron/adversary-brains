@@ -1,0 +1,20 @@
+.claude/
+__pycache__/
+*.pyc
+.pytest_cache/
+# a verifier's virtualenv must not trip runlog.tree_is_dirty() / verify_all
+.venv/
+venv/
+experiments/mordor_cache/
+# the paper's .docx exports (built at repo root by a local, untracked docx export
+# script) — root-anchored so a deliberately-tracked .docx in a subdir is not hidden
+/*.docx
+
+# generated intermediate (regenerate: tools/make_paper_kit.py)
+docs/paper-ledger/kit_patch.generated.jsonl
+
+# session scratch (ephemeral build provenance)
+scratch/
+
+# clean standalone ship export (build output; rebuild via git archive + strip packaging/CI)
+/ship/

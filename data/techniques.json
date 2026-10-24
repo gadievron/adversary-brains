@@ -1,0 +1,23 @@
+{
+  "_note": "Small curated MITRE ATT&CK technique-id -> name index for the extract validation gate (appendix 3 step 3: 'validate every technique id against the ATT&CK bundle; drop failures'). This is a PoC subset, not the full bundle; the bootstrap-from-full-STIX path is out of PoC scope (README not-built list). Ids/names are the public ATT&CK enterprise identifiers.",
+  "T1059": "Command and Scripting Interpreter",
+  "T1059.001": "Command and Scripting Interpreter: PowerShell",
+  "T1059.003": "Command and Scripting Interpreter: Windows Command Shell",
+  "T1071": "Application Layer Protocol",
+  "T1071.001": "Application Layer Protocol: Web Protocols",
+  "T1090": "Proxy",
+  "T1090.001": "Proxy: Internal Proxy",
+  "T1003": "OS Credential Dumping",
+  "T1003.003": "OS Credential Dumping: NTDS",
+  "T1078": "Valid Accounts",
+  "T1556": "Modify Authentication Process",
+  "T1556.006": "Modify Authentication Process: Multi-Factor Authentication",
+  "T1136": "Create Account",
+  "T1486": "Data Encrypted for Impact",
+  "T1490": "Inhibit System Recovery",
+  "T1195": "Supply Chain Compromise",
+  "T1195.002": "Supply Chain Compromise: Compromise Software Supply Chain",
+  "T1584": "Compromise Infrastructure",
+  "T1105": "Ingress Tool Transfer",
+  "T1587": "Develop Capabilities"
+}

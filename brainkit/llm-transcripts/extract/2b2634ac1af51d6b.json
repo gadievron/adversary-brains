@@ -1,0 +1,16 @@
+{
+  "context": "extract",
+  "requested_model": "qwen2.5:1.5b",
+  "model": "qwen2.5:1.5b",
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract threat-intel structure from the report as strict JSON with keys actors (list of strings), technique_ids (list of ATT&CK ids like T1059.001), tooling (list of strings). Do not invent ids."
+    },
+    {
+      "role": "user",
+      "content": "APT29 used WellMess and PowerShell (T1059.001); also a fabricated T9999.999. C2 at evil.example, hash 44d88612fea8a8f36de82e1278abb02f"
+    }
+  ],
+  "response": "{\n  \"actors\": [\n    \"APT29\"\n  ],\n  \"technique_ids\": [\n    \"T1059.001\",\n    \"T9999.999\"\n  ],\n  \"tooling\": [\n    \"WellMess\",\n    \"PowerShell\"\n  ]\n}"
+}

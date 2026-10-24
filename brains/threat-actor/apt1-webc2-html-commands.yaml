@@ -1,0 +1,50 @@
+# APT1, the clean case (appendix 2 of the brief): one durable habit, a large
+# perishable appendix. The WEBC2 command-retrieval behavior is the required,
+# stable link; the 3,000+ published indicators were retooled away within about
+# three months, so the sample indicator entity is ephemeral and carries little
+# weight. The HTRAN hop-forwarding link is omitted: it is visible from a
+# research vantage, not a typical victim network, so most receivers would mark
+# it invisible and coverage-map would suspend on it.
+# Attribution (PLA Unit 61398) stays in the title/references as prose only —
+# the schema has no attribution field by construction.
+# Normalizer dependency (BRAIN-AUTHORING §4.7, ISSUES I14): e1's pattern keeps
+# the paper fragment's `name: webc2-backdoor` — a malware-family label, not a
+# process name any endpoint reports — so required link L1 matches only where an
+# upstream normalizer classifies the process and synthesizes this name.
+schema: brain/0.1
+id: 7d3f1a02-9c4e-4b21-a7f0-2e9b5c81d004
+title: APT1 command retrieval in web-page tags
+status: stable
+scale: threat-actor
+representation: graph
+match: likelihood
+threshold: 0.7
+tlp: clear
+created: "2026-07-01"
+modified: "2026-07-08"
+references:
+  - https://services.google.com/fh/files/misc/mandiant-apt1-report.pdf
+entities:
+  - {id: e1, type: process, pattern: {name: webc2-backdoor}}
+  - {id: e2, type: url, pattern: {x-role: c2-webpage}}
+  - {id: e3, type: file, pattern: {x-note: spearphish-zip-attachment}}
+  - {id: e4, type: domain-name, value: aaa.aaa.example}   # one of 3000+; retooled in months
+links:
+  - id: L1
+    type: activity
+    source: e1
+    target: e2
+    relation: retrieves-commands-in-html
+    role: required
+    volatility: stable          # 400+ variants over six years; the namesake habit
+    prior: 0.9
+    provenance: {kind: reported, source: mandiant-apt1-2013}
+  - id: L2
+    type: activity
+    source: e3
+    target: e1
+    relation: delivered
+    role: supporting
+    volatility: rotating
+    prior: 0.4
+    provenance: {kind: reported, source: mandiant-apt1-2013}

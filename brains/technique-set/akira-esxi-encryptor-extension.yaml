@@ -1,0 +1,33 @@
+# The ransomware floor, where the wager fails at the actor scale (appendix 2 of
+# the brief). RansomHub and Akira read as commodity throughout, so no actor-scale
+# brain forms — "a brain that never forms is the common and correct outcome."
+# Where a distinctive piece exists it is the tool, not the actor: Akira's ESXi
+# encryptor writing a fixed file extension is a narrow technique-set brain worth
+# keeping. Later variants also wrote .powerranges (per the paper's comment); this
+# brain keeps the .akira core and treats extension churn as rotation risk.
+schema: brain/0.1
+id: 25ca5f4c-2c24-46a0-9dd4-f86331f67b58
+title: Akira ESXi encryptor fixed file extension
+status: test
+scale: technique-set
+representation: graph
+match: likelihood
+threshold: 0.7
+tlp: clear
+created: "2026-07-01"
+modified: "2026-07-10"
+references:
+  - https://www.cisa.gov/news-events/cybersecurity-advisories/aa24-109a
+entities:
+  - {id: e1, type: process, pattern: {x-note: ESXi encryptor}}
+  - {id: e2, type: file, pattern: {name|ends: .akira}}   # later variants also .powerranges
+links:
+  - id: L1
+    type: activity
+    source: e1
+    target: e2
+    relation: wrote
+    role: required
+    volatility: stable
+    prior: 0.7
+    provenance: {kind: reported, source: cisa-aa24-109a}

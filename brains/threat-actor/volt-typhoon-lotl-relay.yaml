@@ -1,0 +1,43 @@
+# Volt Typhoon, an actor built to be featureless (appendix 2 of the brief).
+# Living off the land, most of what it does is commodity by design; two native
+# actions survive the wager: the netsh PortProxy registry change that turns a
+# compromised host into a relay, and ntdsutil writing a copy of the directory
+# database to a readable location. Both are close to the operation rather
+# than to a swappable tool, so both are required and stable. The router-botnet
+# relays are infrastructure — disrupted in early 2024 and rebuilt — so those
+# entities would be ephemeral and are not represented here.
+schema: brain/0.1
+id: 1a76b0f9-c399-4706-9ff1-2049d64e352b
+title: Volt Typhoon native relay and directory-database copy
+status: stable
+scale: threat-actor
+representation: graph
+match: likelihood
+threshold: 0.7
+tlp: clear
+created: "2026-07-01"
+modified: "2026-07-09"
+references:
+  - https://www.cisa.gov/news-events/cybersecurity-advisories/aa24-038a
+entities:
+  - {id: e1, type: process, pattern: {name: netsh.exe, command_line|contains: portproxy}}
+  - {id: e2, type: process, pattern: {name: ntdsutil.exe}}
+links:
+  - id: L1
+    type: activity
+    source: e1
+    target: e1
+    relation: created-port-proxy
+    role: required
+    volatility: stable
+    prior: 0.8
+    provenance: {kind: reported, source: cisa-aa24-038a}
+  - id: L2
+    type: activity
+    source: e2
+    target: e2
+    relation: copied-directory-database
+    role: required
+    volatility: stable
+    prior: 0.8
+    provenance: {kind: reported, source: cisa-aa24-038a}

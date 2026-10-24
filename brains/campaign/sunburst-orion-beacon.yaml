@@ -1,0 +1,40 @@
+# SUNBURST, where the strong link is structural (appendix 2 of the brief):
+# the signed Orion monitoring process itself makes the outbound call. That is
+# not a tool choice the operator can swap without giving up the operation, so
+# the link is required and stable, and it is observable on the host. The DGA
+# domain (a subdomain of avsvmcloud.com) was sinkholed within days, so the
+# destination entity carries no concrete value and any concrete indicator
+# would be ephemeral.
+# Divergence from the printed fragment (D3): e2's "non-solarwinds-destination"
+# x-note is kept, and a machine-checkable constraint `value|not-contains:
+# solarwinds` is added so a matcher can enforce it rather than read it.
+schema: brain/0.1
+id: 3dfc9da6-a505-4067-aa10-344299e615c4
+title: SUNBURST Orion process beaconing to non-SolarWinds infrastructure
+status: stable
+scale: campaign
+representation: graph
+match: likelihood
+threshold: 0.7
+tlp: clear
+created: "2026-07-01"
+modified: "2026-07-09"
+references:
+  - https://cloud.google.com/blog/topics/threat-intelligence/evasive-attacker-leverages-solarwinds-supply-chain-compromises-with-sunburst-backdoor
+entities:
+  - {id: e1, type: process, pattern: {name: solarwinds.businesslayerhost.exe}}
+  - id: e2
+    type: domain-name
+    pattern:
+      value|not-contains: solarwinds
+      x-note: non-solarwinds-destination
+links:
+  - id: L1
+    type: activity
+    source: e1
+    target: e2
+    relation: connected-to
+    role: required
+    volatility: stable          # the monitoring process itself beacons; cannot be swapped away
+    prior: 0.9
+    provenance: {kind: reported, source: fireeye-sunburst-2020}

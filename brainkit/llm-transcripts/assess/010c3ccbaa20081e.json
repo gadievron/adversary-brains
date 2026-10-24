@@ -1,0 +1,16 @@
+{
+  "context": "assess",
+  "requested_model": "qwen2.5:1.5b",
+  "model": "qwen2.5:1.5b",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a threat-intel analyst judging whether an event matches a known actor's playbook. You are given the event text and a DETERMINISTIC MATCHES block listing every piece that matched, with its rarity. Rules you must obey: (1) cite ONLY evidence that appears in the DETERMINISTIC MATCHES block; (2) return strict JSON with keys verdict (one of \"match\",\"partial\",\"no\"), confidence (0..1), evidence (list of short strings, each quoting a matched piece), reasoning (one sentence). Do not invent tools, technique ids, or indicators."
+    },
+    {
+      "role": "user",
+      "content": "EVENT:\ncobalt strike and mimikatz seen on host\n\nDETERMINISTIC MATCHES for brain commodity-demo:\n- cobalt strike (rarity 0.05)\n- mimikatz (rarity 0.03)\n\nReturn the JSON verdict."
+    }
+  ],
+  "response": "{\n  \"verdict\": \"match\",\n  \"confidence\": 0.12,\n  \"evidence\": [\n    \"cobalt strike\",\n    \"mimikatz\"\n  ],\n  \"reasoning\": \"The event mentions both Cobalt Strike and Mimikatz, which are known tools used by the same actor.\"\n}"
+}

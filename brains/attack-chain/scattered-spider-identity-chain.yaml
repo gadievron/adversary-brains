@@ -1,0 +1,72 @@
+# Scattered Spider, where the signature is off-telemetry (appendix 2 of the
+# brief). The load-bearing entry step is a phone call to a help desk to reset
+# MFA — not in any telemetry a brain ingests — so in most environments its
+# link is marked invisible by the local coverage map and the brain SUSPENDS
+# for want of visibility, not because the actor is absent. The observable
+# scaffold is routine steps distinctive only in arrangement: register a new
+# MFA device, federate a new identity provider with automatic account
+# linking, delete conditional-access policies.
+# Divergences from the printed fragment (see docs/DIVERGENCES.md):
+# D4 — the help-desk reset is added as link L0 (required). The appendix prose
+#   demands it ("its link carries observability: invisible and the brain
+#   suspends") but the printed YAML fragment omits it; without L0 the
+#   suspension semantics cannot be exercised.
+# D9 — the fragment's e2 pattern entry `auto-link on` is not parseable into a
+#   schema-valid pattern map (PyYAML reads it as key "auto-link on" = null);
+#   repaired here as the namespaced annotation `x-auto-link: "on"`.
+# Observability itself is LOCAL and never appears in this file; the demo
+# environment's coverage map will live at experiments/coverage.yaml (Stage 4).
+schema: brain/0.1
+id: ef705c6d-6fe7-4507-b774-721670aedf28
+title: Scattered Spider identity-layer takeover chain
+status: test
+scale: attack-chain
+representation: graph
+match: likelihood
+threshold: 0.7
+tlp: clear
+created: "2026-07-01"
+modified: "2026-07-09"
+references:
+  - https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-320a
+entities:
+  - {id: e1, type: user-account, pattern: {x-note: help-desk reset target}}
+  - {id: e2, type: x-identity-provider, pattern: {x-note: newly federated, x-auto-link: "on"}}
+  - {id: e3, type: x-help-desk, pattern: {x-note: help-desk channel, x-channel: phone}}
+links:
+  - id: L0
+    type: activity
+    source: e3
+    target: e1
+    relation: reset-mfa-via-helpdesk
+    role: required
+    volatility: stable          # the entry habit itself; off-telemetry in most environments
+    prior: 0.8
+    provenance: {kind: reported, source: cisa-aa23-320a}
+  - id: L1
+    type: activity
+    source: e1
+    target: e1
+    relation: registered-mfa-device
+    role: required
+    volatility: stable
+    prior: 0.6
+    provenance: {kind: reported, source: cisa-aa23-320a}
+  - id: L2
+    type: activity
+    source: e2
+    target: e1
+    relation: federated-with-auto-link
+    role: required
+    volatility: rotating        # historical tactic, no longer confirmed current
+    prior: 0.7
+    provenance: {kind: reported, source: cisa-aa23-320a}
+  - id: L3
+    type: activity
+    source: e1
+    target: e1
+    relation: deleted-access-policy
+    role: supporting
+    volatility: stable
+    prior: 0.5
+    provenance: {kind: reported, source: cisa-aa23-320a}
