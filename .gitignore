@@ -18,3 +18,6 @@ scratch/
 
 # clean standalone ship export (build output; rebuild via git archive + strip packaging/CI)
 /ship/
+
+# macOS Finder metadata
+.DS_Store
