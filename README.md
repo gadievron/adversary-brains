@@ -8,13 +8,13 @@ An *adversary brain* is a small typed graph of entities and required-or-supporti
 stands as a logical signature of a threat actor's activity, with fire / screen / suspend
 semantics that separate "not there" from "not seen."
 
-## Adversay Brains paper
+## Adversary Brains paper
 The original paper this repo is a part of can be found here: 
 
 ## Check out what we do at Knostic
-- Check our what we do at Knostic to secure agents and their supply chain: (https://knostic.ai/)[https://knostic.ai/]
-- We also have quite a bit of open source: (https://github.com/knostic)[https://github.com/knostic]
-- One example of which being OpenAnt, the first open source LLM-based vulnerability discovery and remediation project: (https://github.com/knostic/openant/)[https://github.com/knostic/openant/]
+- Check out what we do at Knostic to secure agents and their supply chain: [https://knostic.ai/](https://knostic.ai/)
+- We also have quite a bit of open source: [https://github.com/knostic](https://github.com/knostic)
+- One example of which being OpenAnt, the first open source LLM-based vulnerability discovery and remediation project: [https://github.com/knostic/openant/](https://github.com/knostic/openant/)
 
 ## What's here
 | Path | What it is |
