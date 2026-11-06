@@ -9,7 +9,7 @@ stands as a logical signature of a threat actor's activity, with fire / screen /
 semantics that separate "not there" from "not seen."
 
 ## Adversary Brains paper
-The original paper this repo is a part of can be found here: 
+The original paper this repo is a part of can be found here: [Adversary Brains: Hypothesis-Based Logical Signatures for Threat Actor Detection with LLMs](https://arxiv.org/abs/2610.35624)
 
 ## Check out what we do at Knostic
 - Check out what we do at Knostic to secure agents and their supply chain: [https://knostic.ai/](https://knostic.ai/)
